@@ -18,8 +18,7 @@ public class Orders : MonoBehaviour {
 		file.WriteLine(planet.playerFactionID.ToString());
 		//write faction name
 		file.WriteLine(planet.playerFaction.fname);
-		file.WriteLine(planet.currentChar.GetComponent<Chit>().tile.id.ToString());
-		
+		file.WriteLine(planet.currentChar.GetComponent<Chit>().tile.id.ToString());	
 	}
 	
 	public void CommitTurn()
@@ -27,6 +26,13 @@ public class Orders : MonoBehaviour {
 		file.WriteLine("End");
 		file.Close();
 		Application.Quit();
+	}
+	
+	public void MovementOrder(Tile tFrom, Tile tTo)
+	{
+		file.WriteLine("Move");
+		file.WriteLine(tFrom.id.ToString());
+		file.WriteLine(tTo.id.ToString());
 	}
 	
 	public void EnlistOrder(City city)
