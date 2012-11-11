@@ -48,9 +48,13 @@ public class Tile : MonoBehaviour {
 		if (tileType == TileType.PENT)
 		{
 			// attach a shrine!
+			// first randomly decide which of the 4 shrines we want!
+			int r = Random.Range(1,4);		
+			Debug.Log ("Shrine" + r.ToString());
 			Vector3 m =   GameObject.FindGameObjectWithTag("Planet").transform.localToWorldMatrix * midpoint;
-			GameObject gameObject = (GameObject)GameObject.Instantiate(Resources.Load("ShrineChit"), m, Quaternion.LookRotation(midpoint));	
-			gameObject.transform.Find("Shrine").transform.localScale = new Vector3(chitScalingFactor,chitScalingFactor,chitScalingFactor);
+			GameObject gameObject = (GameObject)GameObject.Instantiate(Resources.Load("Shrine" + r.ToString()), m, Quaternion.LookRotation(midpoint));	
+			gameObject.name = "Shrine";
+			gameObject.transform.localScale = new Vector3(chitScalingFactor,chitScalingFactor,chitScalingFactor);
 			gameObject.transform.parent = GameObject.FindGameObjectWithTag("Planet").transform;
 			chitOnTile = gameObject.GetComponent<Chit>();
 		}		
@@ -174,8 +178,11 @@ public class Tile : MonoBehaviour {
 			if (withinMovementRange == true)
 			{
 			//	Debug.Log("can move here!");				
-				MoveChit(planet.orderingChit);
+			//	MoveChit(planet.orderingChit);
+				planet.orderingChit.MovementArrowDone();
+				planet.orders.MovementOrder(planet.orderingChit.tile, this);
 				planet.orderingChit = null;
+				
 			}
 			else
 			{

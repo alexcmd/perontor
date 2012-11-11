@@ -22,11 +22,11 @@ ModelImporter:
     clipAnimations: []
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMesh: 0
     secondaryUVAngleDistortion: 8
@@ -62,9 +62,6 @@ ModelImporter:
       data:
         first: 33
         second: a05a3200
-      data:
-        first: 64
-        second: 00a86100
     House:
       data:
         first: 1
@@ -78,6 +75,3 @@ ModelImporter:
       data:
         first: 33
         second: a25a3200
-      data:
-        first: 64
-        second: 02a86100

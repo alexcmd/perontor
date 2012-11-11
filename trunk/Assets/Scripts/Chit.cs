@@ -37,12 +37,16 @@ public class Chit : MonoBehaviour {
 	{
 		if (updatingMovementArrow)
 		{
-			Tile pointingToTile = transform.parent.GetComponent<Planet>().mouseOverTile;
-			Debug.Log (pointingToTile.midpoint.ToString());
+			Tile pointingToTile = transform.parent.GetComponent<Planet>().mouseOverTile;			
 			LineRenderer arrow = this.GetComponent<LineRenderer>();
-			arrow.SetPosition(0, tile.midpoint);		
-			arrow.SetPosition(1, pointingToTile.midpoint);
 			
+			// draw curved arrow line thing!¬
+			for (int p=0; p < 30; p++)
+			{
+				float a = (float)(225-(p-15)*(p-15))/100;
+				Vector3 pt = a * Vector3.Lerp(tile.midpoint, pointingToTile.midpoint, (float)p/29);
+				arrow.SetPosition(p, pt);
+			}	
 		}
 	}
 	
@@ -53,9 +57,14 @@ public class Chit : MonoBehaviour {
 		LineRenderer arrow = this.GetComponent<LineRenderer>();
 		arrow.enabled = true;
 		
-		arrow.SetVertexCount(2);
+		arrow.SetVertexCount(30);
 		arrow.SetPosition(0, transform.position);		
 		arrow.SetPosition(1, transform.position);
+	}
+	
+	public void MovementArrowDone()
+	{
+		updatingMovementArrow = false;	
 	}
 	
 	public void SetMoveFlag(bool b)
@@ -70,8 +79,7 @@ public class Chit : MonoBehaviour {
 	{
 	//	tile.ClickedOnATileWithAChit();	
 	}
-	
-	
+		
 	 
     void OnCollisionEnter() {
        
