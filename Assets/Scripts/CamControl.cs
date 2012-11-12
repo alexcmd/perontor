@@ -213,7 +213,7 @@ public class CamControl : MonoBehaviour
 		//}
 		
 		// check for mouse scrolling		
-		if (Input.mousePosition [0] < scrollL) {
+		if ((Input.mousePosition [0] < scrollL ) || (Input.GetAxis("Horizontal")<0)) {
 
 //			Debug.Log ("Scroll left " + Input.mousePosition[0] + " | " + rotSpeed);
 			if (rotSpeed < maxScrollSpeed) {
@@ -221,7 +221,7 @@ public class CamControl : MonoBehaviour
 			}
 			currentAzimuth = currentAzimuth + rotSpeed;
 			changedAngles = true;
-		} else if (Input.mousePosition [0] > scrollR) {
+		} else if ((Input.mousePosition [0] > scrollR) || (Input.GetAxis("Horizontal")>0)) {
 //			Debug.Log ("Scroll right " + Input.mousePosition[0] + " | " + rotSpeed);
 			if (rotSpeed > -maxScrollSpeed) {
 				rotSpeed = rotSpeed - rotSpeedStep;
@@ -236,7 +236,7 @@ public class CamControl : MonoBehaviour
 		
 		// now detect vertical scrolling
 		// but only if the cursor's in the window
-		if (Input.mousePosition [1] > 0 && Input.mousePosition [1] < Screen.height) {
+		if ((Input.mousePosition [1] > 0 && Input.mousePosition [1] < Screen.height) || (Input.GetAxis("Vertical")>0)) {
 			if (Input.mousePosition [1] > scrollD) {
 				if (currentElevation < maxElevation) {
 					// & (currentElevation < 135)
@@ -245,7 +245,7 @@ public class CamControl : MonoBehaviour
 					changedAngles = true;
 				}
 				
-			} else if (Input.mousePosition [1] < scrollU) {
+			} else if ((Input.mousePosition [1] < scrollU) || (Input.GetAxis("Vertical")<0)) {
 				if (currentElevation > -maxElevation) {
 					currentElevation = currentElevation - vertScrollSpeed;
 					changedAngles = true;
