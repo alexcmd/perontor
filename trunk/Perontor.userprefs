@@ -1,7 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CamControl.cs">
     <Files>
+      <File FileName="Assets\Scripts\CamControl.cs" Line="248" Column="81" />
       <File FileName="Assets\Scripts\PlanetaryGeometry.cs" Line="293" Column="14" />
       <File FileName="Assets\Scripts\Orders.cs" Line="35" Column="21" />
       <File FileName="Assets\Scripts\Chit.cs" Line="13" Column="18" />
