@@ -6,6 +6,7 @@ public class CamControl : MonoBehaviour
 	
 	/* 
 	 * as the name suggests, this controls the main camera
+	 * flaled at by John Harland
 	 * */
 	
 	float zoomSens = 1.0f; // zoom sensitivity
@@ -231,26 +232,27 @@ public class CamControl : MonoBehaviour
 		} else {
 			rotSpeed = 0;
 		}
-		// now rotate
-		//anchorH.transform.RotateAround(Vector3.up, scrollRot);
+		
+		
 		
 		// now detect vertical scrolling
 		// but only if the cursor's in the window
-		if ((Input.mousePosition [1] > 0 && Input.mousePosition [1] < Screen.height) || (Input.GetAxis("Vertical")>0)) {
-			if (Input.mousePosition [1] > scrollD) {
+		//if ((Input.mousePosition [1] > 0 && Input.mousePosition [1] < Screen.height) || ) {
+			if (Input.mousePosition [1] > scrollD || (Input.GetAxis("Vertical")>0)) {
 				if (currentElevation < maxElevation) {
-					// & (currentElevation < 135)
-					// & (currentElevation > 45))
+					Debug.Log("scroll up");
 					currentElevation = currentElevation + vertScrollSpeed;	
 					changedAngles = true;
 				}
+				}
 				
-			} else if ((Input.mousePosition [1] < scrollU) || (Input.GetAxis("Vertical")<0)) {
+			 else if ((Input.mousePosition [1] < scrollU) || (Input.GetAxis("Vertical")<0)) {
 				if (currentElevation > -maxElevation) {
 					currentElevation = currentElevation - vertScrollSpeed;
+				Debug.Log("scroll down");
 					changedAngles = true;
 				}
-			}
+			
 		}
 			
 	}
