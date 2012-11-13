@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (Character))]
+[RequireComponent (typeof (Controller))]
 
 public class City : MonoBehaviour {
 	

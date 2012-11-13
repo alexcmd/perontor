@@ -10,11 +10,15 @@ public class Chit : MonoBehaviour {
 	
 	public Tile tile;
 	public Faction faction;
-	public bool canMoveThisTurn = false;
+	
+	// stats
+	public ChitTypes ctype;
 	public int movementRange;
 	public List<Terrains> canEnterTerrains = new List<Terrains>();
-	public ChitTypes ctype;
-
+	public bool requires_influence;
+	public int str; 
+	
+	public bool canMoveThisTurn = false;
 	bool updatingMovementArrow = false;
 	/* not used yet, but no doubt we'll come up with some stats soon enough
 	* for example:

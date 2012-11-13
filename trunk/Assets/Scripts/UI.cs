@@ -52,21 +52,21 @@ public class UI : MonoBehaviour {
 		GUILayout.Label("Faction: " + faction.fname);
 		GUILayout.Label("Turn: " + planet.turnCtr.ToString());
 		GUILayout.Label("Cycle: " + faction.cycle.ToString());
-		GUILayout.Label("Step: " + (faction.step+1).ToString() + "/" + (faction.characters.Count).ToString());
+		GUILayout.Label("Step: " + (faction.step+1).ToString() + "/" + (faction.controllers.Count).ToString());
 		
 		if (GUILayout.Button("End Turn"))
 		{
 			planet.orders.CommitTurn();  
 		}
 		
-	/*	if (faction.characters[faction.step].tag == "City")
+	/*	if (faction.controllers[faction.step].tag == "City")
 		{
 			DisplayCityInfo();
 		}
 		else
 		{*/
-		GUILayout.Label("Active Character: " + faction.characters[faction.step].name.ToString());	
-		GUILayout.Label("Commands left: " + faction.characters[faction.step].remainingCR.ToString());
+		GUILayout.Label("Active controller: " + faction.controllers[faction.step].name.ToString());	
+		GUILayout.Label("Commands left: " + faction.controllers[faction.step].remainingCR.ToString());
 
 		DisplayTileInfo();
 		// Display Selected Chit Info
@@ -74,7 +74,7 @@ public class UI : MonoBehaviour {
 
 		GUILayout.EndArea();
 		
-		// now Display character activation order somewhere else on screen
+		// now Display controller activation order somewhere else on screen
 		DisplayCharActOrder();
 		
 		// pop-up windows
@@ -97,9 +97,9 @@ public class UI : MonoBehaviour {
 		displayCityInfoWindow = true;
 		city = c;
 /*		GUILayout.BeginArea(new Rect(50, 20, 150, 200));
-		GUILayout.Label("Commands left: " + faction.characters[faction.step].remainingCR.ToString());
+		GUILayout.Label("Commands left: " + faction.controllers[faction.step].remainingCR.ToString());
 		
-		GUILayout.Label("Active City: " + faction.characters[faction.step].name.ToString());
+		GUILayout.Label("Active City: " + faction.controllers[faction.step].name.ToString());
 		GUILayout.Label("Population: " + city.pop.ToString()); 
 		string buttonString;
 		if (city.currentyBuilding == ChitTypes.NULL)
@@ -120,10 +120,10 @@ public class UI : MonoBehaviour {
 	void DisplayCharActOrder()
 	{
 		GUILayout.BeginArea(new Rect(Screen.width-250, 5, 250, 150), panel);
-		GUILayout.Label("Character Activation Order:");
-		for (int c=0; c<faction.characters.Count; c++)
+		GUILayout.Label("controller Activation Order:");
+		for (int c=0; c<faction.controllers.Count; c++)
 		{
-			GUILayout.Label(faction.characters[c].cType + " - " + faction.characters[c].name);	
+			GUILayout.Label(faction.controllers[c].GetComponent<Chit>().ctype + " - " + faction.controllers[c].name);	
 		}
 		GUILayout.EndArea();		
 	}

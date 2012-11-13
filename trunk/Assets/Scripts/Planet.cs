@@ -23,13 +23,22 @@ public enum TileType
 
 public enum ChitTypes
 {
-	NULL,
-	CITY,
-	COMMANDER,
-	SWORD,
-	SCOUT,
-	NECTOWER,
-	SHRINE	
+	NULL, 		// I'm not sure why we'd need a NULL
+	
+	CITY, 		// settlements.. stationary controller unit. Can build.
+	COMMANDER,  // mobile controller unit
+	FLAGSHIP,   // naval controller unit
+	
+	SWORD,		// basic ground unit	
+	KNIGHT,		// alt ground unit
+	SHIP,		// basic naval unit
+	
+	SCOUT,		// ground unit - doesn't need influence
+	BUILDER, 	// builds new cities - doesn't need influence
+	
+	SHRINE, 	// capture these for points and perks
+	NECTOWER 	// the evil Nec!
+	
 }
 
 public class Planet : MonoBehaviour {
@@ -57,7 +66,7 @@ public class Planet : MonoBehaviour {
 	
 	public int turnCtr = 1;
 	
-	public Character currentChar;	// the currently active character/settlement
+	public Controller currentChar;	// the currently active character/settlement
 	
 	public Chit selectedChit; // do I really need selectedChit and orderingChit?
 	public Chit orderingChit = null;
@@ -103,7 +112,7 @@ public class Planet : MonoBehaviour {
 	//	
 		camControls 	= Camera.main.transform.GetComponent<CamControl>();
 		
-		currentChar 			= playerFaction.characters[playerFaction.step];
+		currentChar 			= playerFaction.controllers[playerFaction.step];
 		currentChar.remainingCR = currentChar.commandRating;
 
 		numberOfFactions = factions.Count;

@@ -10,6 +10,7 @@ public class CreateNewGame : MonoBehaviour {
 	int numFactions;
 		
 	public List<Faction> f = new List<Faction>(); // a list of all factions in game
+	public string[] playerNames;
 	
 	Planet planet;
 	
@@ -25,6 +26,8 @@ public class CreateNewGame : MonoBehaviour {
 		Debug.Log(planet);
 		Debug.Log(planet.geometry);
 		numFactions = this.GetComponentInChildren<MainMenu>().numOfFactions;
+		playerNames = this.GetComponentInChildren<MainMenu>().playerNames;
+		
 		planet.geometry.numSubDivides = this.GetComponentInChildren<MainMenu>().worldSize;
 		
 		planet.geometry.Sqrt3Subdivsion();
@@ -101,7 +104,7 @@ public class CreateNewGame : MonoBehaviour {
 				break;					
 			}
 			
-			f[c].fname = "myFaction";
+			f[c].fname = playerNames[c-1];
 				
 			int startingLoc  = 0;
 			bool needToKeepLooking = true;
@@ -128,7 +131,7 @@ public class CreateNewGame : MonoBehaviour {
 		// make sure Factions recognise that they have settlements
 		for (int c=0; c<numFactions; c++)
 		{
-			f[c].UpdateListOfCharacters();	
+			f[c].UpdateListOfControllers();	
 		}		
 	}
 	

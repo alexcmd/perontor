@@ -1,17 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CamControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tile.cs">
     <Files>
-      <File FileName="Assets\Scripts\CamControl.cs" Line="248" Column="81" />
-      <File FileName="Assets\Scripts\PlanetaryGeometry.cs" Line="293" Column="14" />
+      <File FileName="Assets\Scripts\Controller.cs" Line="21" Column="53" />
+      <File FileName="Assets\Scripts\MainMenu.cs" Line="167" Column="47" />
+      <File FileName="Assets\Scripts\CamControl.cs" Line="251" Column="20" />
       <File FileName="Assets\Scripts\Orders.cs" Line="35" Column="21" />
-      <File FileName="Assets\Scripts\Chit.cs" Line="13" Column="18" />
-      <File FileName="Assets\Scripts\Tile.cs" Line="57" Column="25" />
-      <File FileName="Assets\Scripts\UI.cs" Line="59" Column="17" />
-      <File FileName="Assets\Scripts\Planet.cs" Line="86" Column="44" />
-      <File FileName="Assets\Scripts\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SaveLoad.cs" Line="122" Column="52" />
-      <File FileName="Assets\Scripts\CreateNewGame.cs" Line="1" Column="3" />
+      <File FileName="Assets\Scripts\Chit.cs" Line="22" Column="29" />
+      <File FileName="Assets\Scripts\Tile.cs" Line="26" Column="16" />
+      <File FileName="Assets\Scripts\UI.cs" Line="126" Column="66" />
+      <File FileName="Assets\Scripts\Planet.cs" Line="115" Column="45" />
+      <File FileName="Assets\Scripts\SaveLoad.cs" Line="91" Column="53" />
+      <File FileName="Assets\Scripts\CreateNewGame.cs" Line="134" Column="31" />
+      <File FileName="Assets\Scripts\Faction.cs" Line="39" Column="13" />
+      <File FileName="Assets\Scripts\Turn.cs" Line="79" Column="19" />
+      <File FileName="Assets\Scripts\City.cs" Line="4" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -10,12 +10,12 @@ public class Faction {
 	public int step = -1;
 	public Color fcol;
 	
-	public List<Character> characters = new List<Character>();
+	public List<Controller> controllers = new List<Controller>();
 	
 	
-	public void UpdateListOfCharacters()		
+	public void UpdateListOfControllers()		
 	{
-		List<Character> newList = new List<Character>();	
+		List<Controller> newList = new List<Controller>();	
 		// get all commanders belonging to faction
 		GameObject[] allCommanders = GameObject.FindGameObjectsWithTag("Commander");
 		
@@ -23,8 +23,8 @@ public class Faction {
 		{
 			if (g.GetComponent<Chit>().faction == this)
 			{
-				newList.Add(g.GetComponent<Character>());
-				Debug.Log(g.GetComponent<Character>().name);
+				newList.Add(g.GetComponent<Controller>());
+				Debug.Log(g.GetComponent<Controller>().name);
 			}
 		}
 		// get all cities belonging to faction
@@ -33,12 +33,12 @@ public class Faction {
 		{
 			if (g.GetComponent<Chit>().faction == this)
 			{
-				newList.Add(g.GetComponent<Character>());	
+				newList.Add(g.GetComponent<Controller>());	
 			}
 		}
-		characters.Clear();
-		characters = newList;
-		characters = ShuffleCharacters(characters);		
+		controllers.Clear();
+		controllers = newList;
+		controllers = ShuffleControllers(controllers);		
 	}
 	
 	/*public void UpdateCities()
@@ -53,13 +53,13 @@ public class Faction {
 		}
 	}*/
 	
-	private List<Character>  ShuffleCharacters(List<Character> cList)
+	private List<Controller>  ShuffleControllers(List<Controller> cList)
 	{
-		Character[] cArray = cList.ToArray();
+		Controller[] cArray = cList.ToArray();
 		// Knuth shuffle algorithm :: courtesy of Wikipedia :)
         for (int t = 0; t < cArray.Length; t++ )
         {
-            Character tmp = cArray[t];
+            Controller tmp = cArray[t];
             int r = Random.Range(t, cArray.Length);
             cArray[t] = cArray[r];
             cArray[r] = tmp;
