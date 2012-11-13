@@ -1,3 +1,4 @@
+#labels Phase-Requirements,Phase-Implementation
 #Design Document for Perontor V1
 
 = Introduction =
@@ -33,6 +34,14 @@ Al has a ones town and one general. John as one town, one general and a ship.
 ||town||town||
 
 etc. Although each time a player cycles through all their controllers, the order is re-randomised. So you can see that having more controllers means you control more of the globe, but your towns will update less often and your generals can give orders less often. 
+
+==Orders==
+A list of potential actions a player can make:
+  * recruit - at a settlement. [townRecruiting, chitToRecruit, tileIDtoAppear]
+  * move - [idFrom, idTo]
+ 
+what else? what about Diplomacy style _support_ rules? 
+
 
 ==Chit Types==
 
