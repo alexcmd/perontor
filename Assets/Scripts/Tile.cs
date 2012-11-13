@@ -97,7 +97,7 @@ public class Tile : MonoBehaviour {
 		planet.ResetTileMovementRangeFlag();
 		planet.UnHighLightTiles();
 		// reduce current char's remaning CR
-		chit.faction.characters[chit.faction.step].remainingCR--;
+		chit.faction.controllers[chit.faction.step].remainingCR--;
 	}
 	
 	public void ReapplyTerrainTexture()
@@ -271,7 +271,7 @@ public class Tile : MonoBehaviour {
 		else if (chitOnTile.canMoveThisTurn)
 		{
 			Faction currFaction = planet.playerFaction;
-			if (currFaction.characters[currFaction.step].remainingCR>0)
+			if (currFaction.controllers[currFaction.step].remainingCR>0)
 			{
 				// switch in line renderer/movement arrow
 				chitOnTile.MovementArrowOn();
@@ -307,14 +307,12 @@ public class Tile : MonoBehaviour {
 		{
 			case ChitTypes.COMMANDER:
 				gameObject = (GameObject)GameObject.Instantiate(Resources.Load("Commander"), m, Quaternion.LookRotation(midpoint));	
-				gameObject.GetComponent<Character>().name = cname;
+				gameObject.GetComponent<Controller>().name = cname;
 				gameObject.GetComponent<Chit>().movementRange = 2;
-				gameObject.GetComponent<Character>().cType = cType;	
 				break;
 			case ChitTypes.CITY:		
 				gameObject = (GameObject)GameObject.Instantiate(Resources.Load("City"), m, Quaternion.LookRotation(midpoint));	
-				gameObject.GetComponent<Character>().name = cname;
-				gameObject.GetComponent<Character>().cType = cType;					
+				gameObject.GetComponent<Controller>().name = cname;
 				break;
 			case ChitTypes.SWORD:
 				gameObject = (GameObject)GameObject.Instantiate(Resources.Load("Sword"), m, Quaternion.LookRotation(midpoint));	
@@ -323,8 +321,7 @@ public class Tile : MonoBehaviour {
 				break;
 			case ChitTypes.NECTOWER:		
 				gameObject = (GameObject)GameObject.Instantiate(Resources.Load("NecTower"), m, Quaternion.LookRotation(midpoint));	
-				gameObject.GetComponent<Character>().name = "The Necromancer";
-				gameObject.GetComponent<Character>().cType = cType;
+				gameObject.GetComponent<Controller>().name = "The Necromancer";
 				break;
 			default:
 				gameObject = new GameObject();

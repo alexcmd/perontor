@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 
+
 public class MainMenu : MonoBehaviour {
 	
 	/* this is the main menu GUI. 
@@ -14,6 +15,8 @@ public class MainMenu : MonoBehaviour {
 	public int worldSize = 2;
 	string turnStr = "1";
 	
+	public string[] playerNames;
+	
 	public bool isHost = false; // used to determine if we are processing turns, or playing a turn
 	public int turn;
 	public int factionID = 1;
@@ -23,6 +26,7 @@ public class MainMenu : MonoBehaviour {
 	bool displayWorldGenOptions = false;	
 	bool displayWorldGenWindow = false;
 	bool displayLoadWindow = false;
+	bool displayGetPlayerNamesWindow = false;
 	
 	void Awake()
 	{
@@ -81,6 +85,10 @@ public class MainMenu : MonoBehaviour {
 		if (displayWorldGenWindow == true)		{
 			popup = true;
 			GUI.Window(1, new Rect(300, 200, 250, 200), DisplayWorldGenWindow, "World Generating");
+		}
+		if (displayGetPlayerNamesWindow == true)		{
+			popup = true;
+			GUI.Window(1, new Rect(300, 200, 250, 200), DisplayGetPlayerNamesWindow, "Enter Player Names");
 		}
 		if (displayLoadWindow == true)		{
 			popup = true;
@@ -148,10 +156,19 @@ public class MainMenu : MonoBehaviour {
 		worldSize 		= (int)(GUILayout.HorizontalSlider(worldSize, 2, 6));
 		GUILayout.Label("Select Number of Factions: " + numOfFactions.ToString());
 		numOfFactions 	= (int)(GUILayout.HorizontalSlider(numOfFactions, 2, 6));
+		
+		// input faction names!
+		
 		if (GUILayout.Button("Done"))
 		{
+			playerNames = new string[numOfFactions];
+			for (int n=0; n<numOfFactions; n++)
+			{
+				playerNames[n] = "faction" + n.ToString();	
+			}
 			displayWorldGenOptions = false;
-			popup = false;
+			displayGetPlayerNamesWindow = true;
+			//popup = false;
 		}
 		GUILayout.EndArea();
 	}
@@ -162,7 +179,24 @@ public class MainMenu : MonoBehaviour {
 		GUILayout.Label ("Generat(ing)/(ed) world... click done to quit");
 		if (GUILayout.Button("Click to Exit"))
 		{
-			Application.Quit();
+			Application.LoadLevel(Application.loadedLevel);
+		}
+		GUILayout.EndArea();
+	}
+	
+	void DisplayGetPlayerNamesWindow(int windowID)
+	{
+		GUILayout.BeginArea(new Rect(25, 50, 200, 100));
+		
+		for (int n=0; n<numOfFactions; n++)
+		{
+			Debug.Log(playerNames[n]);
+			playerNames[n] = GUILayout.TextField(playerNames[n]);	
+		}
+		if (GUILayout.Button("Done"))
+		{
+			displayGetPlayerNamesWindow = false;
+			popup = false;
 		}
 		GUILayout.EndArea();
 	}

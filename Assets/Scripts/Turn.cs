@@ -9,18 +9,18 @@ public class Turn : MonoBehaviour {
 	 * 
 	 * The turn structure is a little odd (interesting!). 
 	 * Factions take it in turns.
-	 * On each turn, one of their characters/settlements are activated this allows 
+	 * On each turn, one of their controllers/settlements are activated this allows 
 	 * them to give orders to that character/settlement, and give order to normal 
 	 * chits that are near by (command radius or something)
 	 * 
 	 * Each faction has a "cycle" which is the number of turns needed to cycle through
-	 * all their characters/settlements. So the more you have, the longer it will take
+	 * all their controllers/settlements. So the more you have, the longer it will take
 	 * you to complete a cycle.
 	 * 
 	 * Economic stuff (building things in settlements, research, etc) take place per 
 	 * cycle. 
 	 * 
-	 * At the start of each cycle, the game randomly re-orders your characters and 
+	 * At the start of each cycle, the game randomly re-orders your controllers and 
 	 * settlements. 
 	 * */
 	
@@ -30,7 +30,7 @@ public class Turn : MonoBehaviour {
 	
 	int numFactions; 				// number of factions
 	public int currentFctr = 0; 	// used to keep track of whose turn it is
-	public Character currentChar;	// the currently active character/settlement
+	public Controller currentChar;	// the currently active character/settlement
 	
 	public int turn = 0;
 	
@@ -72,12 +72,12 @@ public class Turn : MonoBehaviour {
 //		planet.ui.UpdatePanelColour(f.fcol);
 		
 		planet.ResetTileMovementRangeFlag();
-		f.step = (f.step+1)%f.characters.Count;
-		if (f.step+1 == f.characters.Count)
+		f.step = (f.step+1)%f.controllers.Count;
+		if (f.step+1 == f.controllers.Count)
 		{
 			f.cycle++;			
-			f.UpdateListOfCharacters();
-			Debug.Log("Num chars found:" + f.characters.Count.ToString());
+			f.UpdateListOfControllers();
+			Debug.Log("Num chars found:" + f.controllers.Count.ToString());
 		}
 		
 		

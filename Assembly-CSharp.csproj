@@ -46,9 +46,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActiveRegionHoop.cs" />
      <Compile Include="Assets\Scripts\CamControl.cs" />
-     <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Chit.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
+     <Compile Include="Assets\Scripts\Controller.cs" />
      <Compile Include="Assets\Scripts\CreateNewGame.cs" />
      <Compile Include="Assets\Scripts\Faction.cs" />
      <Compile Include="Assets\Scripts\GetGeometry.cs" />

@@ -73,8 +73,8 @@ static public class SaveLoad {
 			file.WriteLine(s);
 			s = f[t].fcol.ToString();
 			file.WriteLine(s);
-			file.WriteLine("num chars");	
-			s = f[t].characters.Count.ToString(); // write number of characters
+			file.WriteLine("num controllers");	
+			s = f[t].controllers.Count.ToString(); // write number of controllers
 			file.WriteLine(s);	
 			
 			// new game so step = 0 and cycle = 1
@@ -84,21 +84,21 @@ static public class SaveLoad {
 			file.WriteLine("current cycle");	
 			s = "1"; // write cycle
 			file.WriteLine(s);			
-			file.WriteLine("CHAR Details below");	
-			for (int c=0; c<f[t].characters.Count; c++)
+			file.WriteLine("Controller Details below");	
+			for (int c=0; c<f[t].controllers.Count; c++)
 			{
-				Character currentCharacter = f[t].characters[c];
-				s = currentCharacter.cType.ToString();
+				Controller currentController = f[t].controllers[c];
+				s = currentController.GetComponent<Chit>().ctype.ToString();
 				file.WriteLine(s);
-				s = currentCharacter.name;
+				s = currentController.name;
 				file.WriteLine(s);
-				s = currentCharacter.GetComponent<Chit>().tile.id.ToString();
+				s = currentController.GetComponent<Chit>().tile.id.ToString();
 				file.WriteLine(s);
-				// if character was a city, save city details
-			/*	if (currentCharacter.cType == ChitTypes.CITY)
+				// if controller was a city, save city details
+			/*	if (currentController.cType == ChitTypes.CITY)
 				{
 //					Debug.Log("saving city details");
-					City city = currentCharacter.transform.GetComponent<City>();
+					City city = currentController.transform.GetComponent<City>();
 					if (city.currentyBuilding == null)
 					{
 						s = "null";
@@ -168,7 +168,7 @@ static public class SaveLoad {
 			s = planetFile.ReadLine();
 			faction.fcol = ParseColor(s);
 			
-			// Read in number of characters
+			// Read in number of controllers
 			
 			s = planetFile.ReadLine();
 			s = planetFile.ReadLine();			
@@ -189,7 +189,7 @@ static public class SaveLoad {
 				// get Chit Type
 				s = planetFile.ReadLine();	
 				ChitTypes cType = ChitTypeParse(s);
-				// get Character name
+				// get Controller name
 				
 				s = planetFile.ReadLine();	
 				string charName = s;
@@ -198,7 +198,7 @@ static public class SaveLoad {
 				s = planetFile.ReadLine();	
 				int tileID = int.Parse(s);
 				Debug.Log (faction.fname);
-				// spawn character!
+				// spawn controller!
 				planet.tiles[tileID].AttachChit(faction, cType, charName);
 				
 				// now get city specific info, if relevant!
@@ -213,7 +213,7 @@ static public class SaveLoad {
 			}
 			
 			planet.factions.Add(faction);
-			faction.UpdateListOfCharacters();
+			faction.UpdateListOfControllers();
 		}
 		
 		// now add in chits!
