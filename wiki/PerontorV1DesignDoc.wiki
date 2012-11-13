@@ -47,6 +47,7 @@ etc. Although each time a player cycles through all their controllers, the order
 
   * swords - general purpose combat units
   * knights - faster, better, easily flanked.
+  * boat - like a ship, but doesn't have radius of influence
   * scouts - don't need influence.
   * builders - don't need influence, can build new towns. 
 
