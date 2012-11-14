@@ -4,6 +4,11 @@
 
 Here's a lost of things that need done
 
+==[BUG]Fix Terrain Loading==
+
+Tiles don't get given the correct material on load. They only switch to the corret material after being highlighted.
+
+
 ==Read unit stats from .xml file==
 
 Explains itself really. 
@@ -21,4 +26,3 @@ So, I think there are three things we need to be able to "highlight"
   * mouse over highlight (same as above)
 
 This maybe needs changed, so I can have non circular influence (ie, flag ships sending influence along coasts).
-
