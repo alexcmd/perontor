@@ -233,8 +233,7 @@ public class CamControl : MonoBehaviour
 			rotSpeed = 0;
 		}
 		
-		
-		
+
 		// now detect vertical scrolling
 		// but only if the cursor's in the window
 		//if ((Input.mousePosition [1] > 0 && Input.mousePosition [1] < Screen.height) || ) {
@@ -276,4 +275,32 @@ public class CamControl : MonoBehaviour
 			changedAngles = true;
 		}
 	}	
+	
+	public void OutlineTile(Tile tile)
+	{
+		/*
+		 * This is meant to draw an outline round the currently selected tile
+		 * It doesn't work properly, and I can't be bothered going back to work 
+		 * out which vertices in the tile's mesh give the "top face"
+		 * 
+		 * Will fix at a later date
+		 */
+		Vector3[] pts = tile.GetComponent<MeshCollider>().sharedMesh.vertices;
+		LineRenderer outline = transform.parent.GetComponent<LineRenderer>();
+		int npts;
+		if (pts.Length == 18)
+		{
+			npts = 5;
+		}
+		else
+		{
+			npts = 6;
+		}
+		outline.SetVertexCount(npts);
+		
+		for (int p = 0; p<npts; p++)
+		{
+			outline.SetPosition(p, pts[p]);
+		}
+	}
 }

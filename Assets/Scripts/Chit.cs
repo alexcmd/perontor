@@ -13,6 +13,7 @@ public class Chit : MonoBehaviour {
 	
 	// stats
 	public ChitTypes ctype;
+	public bool cornerFacing;
 	public int movementRange;
 	public List<Terrains> canEnterTerrains = new List<Terrains>();
 	public bool requires_influence;

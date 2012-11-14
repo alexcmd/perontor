@@ -18,5 +18,6 @@ public class TileMouseControl : MonoBehaviour {
 	void OnMouseOver()
 	{
 		transform.parent.GetComponent<Planet>().mouseOverTile = this.GetComponent<Tile>();
+		transform.parent.GetComponent<Planet>().GetComponentInChildren<CamControl>().OutlineTile(this.GetComponent<Tile>());
 	}	
 }
