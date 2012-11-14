@@ -4,7 +4,7 @@
 
 Here's a lost of things that need done
 
-==[BUG]Fix Terrain Loading==
+==BUG Fix Terrain Loading==
 
 Tiles don't get given the correct material on load. They only switch to the corret material after being highlighted.
 
@@ -12,6 +12,7 @@ Tiles don't get given the correct material on load. They only switch to the corr
 ==Read unit stats from .xml file==
 
 Explains itself really. 
+
 
 ==Oceans==
 
@@ -26,3 +27,6 @@ So, I think there are three things we need to be able to "highlight"
   * mouse over highlight (same as above)
 
 This maybe needs changed, so I can have non circular influence (ie, flag ships sending influence along coasts).
+
+===Tile Outline===
+One way to provide another way of marking up tiles would be to outline the currently selected/mouseover tile, This shouldn't be too hard to do using a line renderer/geometry. 
