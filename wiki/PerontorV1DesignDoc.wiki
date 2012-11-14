@@ -47,6 +47,8 @@ Keep it simple (and probably broken) for now:
 
 players get 1 resource point per settlement and per shrine. Units cost different amounts of points to start with. 
 
+_Question_: when do shrines allocate their points? Every time you loop round ALL your controllers? Or some other way? 
+
 ==Chit Types==
 
 ===Controller Chits===
