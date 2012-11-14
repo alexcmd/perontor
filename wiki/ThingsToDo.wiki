@@ -1,0 +1,24 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Here's a lost of things that need done
+
+==Read unit stats from .xml file==
+
+Explains itself really. 
+
+==Oceans==
+
+A new way of representing the sea: remove current ocean sphere.
+Then put a (blue transparent) "sea tile" on any tiles that have a below sea level altitude. So the sea is flat, but you can sea the terrain underwater (which might end up being important if we have game mechanics for changing the sea level.
+
+==Highlighting Tiles/Influence==
+So, I think there are three things we need to be able to "highlight"
+
+  * influence radius for given controller (currently uses the bouncing hoop)
+  * movement range for a selected unit (currently switches tiles to self-illuminating.
+  * mouse over highlight (same as above)
+
+This maybe needs changed, so I can have non circular influence (ie, flag ships sending influence along coasts).
+
