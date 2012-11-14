@@ -6,11 +6,10 @@
 This is the design document for V1 of Perontor. This is going to be more "boardgame" focused -> keep things _simple_ and _abstract_ for the time being. This should be easier to manage and allow us to test user interface code, etc for later more ambitious versions of the game. 
 
 Inspirations:
-  * chess     - a small set of well defined playing pieces.
+  * *chess*     - a small set of well defined playing pieces.
   * *go*        - territory control, influence.
   * *diplomacy* - simple rules allowing for interesting player interactions .
   * *solium infernum* - battling over control of certain tiles on the board .
-.
 
 = Details =
 
@@ -42,7 +41,6 @@ A list of potential actions a player can make:
  
 what else? what about Diplomacy style _support_ rules? 
 
-
 ==Chit Types==
 
 ===Controller Chits===
@@ -51,14 +49,19 @@ what else? what about Diplomacy style _support_ rules?
   * general - smaller influence radius, higher unit count. mobile
   * ship - can transport units. influence bonus along coasts
 
-
-===Other Chits===
+===Combat Chits===
 
   * swords - general purpose combat units
   * knights - faster, better, easily flanked.
   * boat - like a ship, but doesn't have radius of influence
-  * scouts - don't need influence.
-  * builders - don't need influence, can build new towns. 
+
+===Independent Chits===
+  * scouts - don't need influence
+  * builders - don't need influence, can build new towns
+
+===Other===
+  * Shrines - shrines mean points. Captured by stationing a sword next to them
+  * NecTower - stronghold for an AI-only faction. Kind of does nothing just now. 
 
 ==Terrain Types==
 
