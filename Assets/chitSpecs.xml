@@ -1,0 +1,20 @@
+<!-- chit specificiation. am I missing any stats? -->
+<chit>
+	<name>sword</name>
+	<mov>1</mov>
+	<terrain>
+		<grass>t</grass>
+		<rock>t</rock>
+		<tundra>t</tundra>
+		<desert>t</desert>
+		<water>f</water>
+	</terrain>
+	<inf>t</inf>
+	<str>1</str>
+	<facing>edge</fac>
+	<controller>
+		<is>f</is>
+		<radius>0</radius>
+		<cr>0</cr>
+	</controller>
+<\chit>
