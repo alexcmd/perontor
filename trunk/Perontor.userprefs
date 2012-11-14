@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CamControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Chit.cs">
     <Files>
-      <File FileName="Assets\Scripts\CamControl.cs" Line="281" Column="49" />
+      <File FileName="Assets\Scripts\CamControl.cs" Line="287" Column="6" />
       <File FileName="Assets\Scripts\Planet.cs" Line="115" Column="45" />
       <File FileName="Assets\Scripts\SaveLoad.cs" Line="91" Column="53" />
       <File FileName="Assets\Scripts\Faction.cs" Line="39" Column="13" />
       <File FileName="Assets\Scripts\Turn.cs" Line="79" Column="19" />
       <File FileName="Assets\Scripts\City.cs" Line="4" Column="38" />
-      <File FileName="Assets\Scripts\TileMouseControl.cs" Line="21" Column="85" />
-      <File FileName="Assets\Scripts\PlanetaryGeometry.cs" Line="319" Column="9" />
+      <File FileName="Assets\Scripts\TileMouseControl.cs" Line="21" Column="80" />
+      <File FileName="Assets\Scripts\PlanetaryGeometry.cs" Line="390" Column="27" />
+      <File FileName="Assets\Scripts\Chit.cs" Line="51" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

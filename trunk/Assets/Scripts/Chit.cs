@@ -48,7 +48,7 @@ public class Chit : MonoBehaviour {
 			// draw curved arrow line thing!¬
 			for (int p=0; p < 30; p++)
 			{
-				float a = (float)(225-(p-15)*(p-15))/100;
+				float a = (float)(225-(p-15)*(p-15))/500 + tile.altitude/2;
 				Vector3 pt = a * Vector3.Lerp(tile.midpoint, pointingToTile.midpoint, (float)p/29);
 				arrow.SetPosition(p, pt);
 			}	

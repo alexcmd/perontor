@@ -1,6 +1,7 @@
 <!-- chit specificiation. am I missing any stats? -->
 <chit>
 	<name>sword</name>
+	<cost>1</cost>
 	<mov>1</mov>
 	<terrain>
 		<grass>t</grass>
