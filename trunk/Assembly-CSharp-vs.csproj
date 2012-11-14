@@ -51,7 +51,6 @@
      <Compile Include="Assets\Scripts\Controller.cs" />
      <Compile Include="Assets\Scripts\CreateNewGame.cs" />
      <Compile Include="Assets\Scripts\Faction.cs" />
-     <Compile Include="Assets\Scripts\GetGeometry.cs" />
      <Compile Include="Assets\Scripts\LoadGame.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MeshExtrusion.cs" />
@@ -68,6 +67,7 @@
      <Compile Include="Assets\Scripts\TileMouseControl.cs" />
      <Compile Include="Assets\Scripts\Turn.cs" />
      <Compile Include="Assets\Scripts\UI.cs" />
+     <None Include="Assets\chitSpecs.xml" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
   </ItemGroup>
   <ItemGroup>

@@ -25,10 +25,7 @@ using System.Linq;
 	
 		public int numSubDivides; // controls the density of the hex grid
 	
-		public PlanetaryGeometry ()
-		{
-		}
-	
+
 
 	
 		public void scaleOcean()
@@ -310,7 +307,7 @@ using System.Linq;
 				hexVertices = ReorderVertices(hexVertices, vertices[h]);
 				hexVertices = ExtrudeTile(hexVertices, altitude); // [tilesVerts, edgeVerts, baseVerts]
 	
-				int[] hexTriangles = GetGeomtry.CreateTileTriangles(hexVertices);
+				int[] hexTriangles = CreateTileTriangles(hexVertices);
 	
 				Vector2[] uvs = new Vector2[hexVertices.Length];
 	    		int i = 0;
