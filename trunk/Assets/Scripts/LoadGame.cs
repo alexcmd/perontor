@@ -13,10 +13,7 @@ public class LoadGame : MonoBehaviour {
 	 */
 	
 
-	int numFactions;
-	
-	
-		
+	int numFactions;	
 	
 	Planet planet;
 	
@@ -52,8 +49,7 @@ public class LoadGame : MonoBehaviour {
 		// sort out ocean	
 		
 		planet.geometry.scaleOcean();
-		
-		
+			
 		planet.geometry.PlaceTiles(alts);	
 		
 		SaveLoad.LoadPlanet2(planet, planetFile);

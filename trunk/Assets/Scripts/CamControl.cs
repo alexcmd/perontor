@@ -239,7 +239,6 @@ public class CamControl : MonoBehaviour
 		//if ((Input.mousePosition [1] > 0 && Input.mousePosition [1] < Screen.height) || ) {
 			if (Input.mousePosition [1] > scrollD || (Input.GetAxis("Vertical")>0)) {
 				if (currentElevation < maxElevation) {
-					Debug.Log("scroll up");
 					currentElevation = currentElevation + vertScrollSpeed;	
 					changedAngles = true;
 				}
@@ -248,7 +247,6 @@ public class CamControl : MonoBehaviour
 			 else if ((Input.mousePosition [1] < scrollU) || (Input.GetAxis("Vertical")<0)) {
 				if (currentElevation > -maxElevation) {
 					currentElevation = currentElevation - vertScrollSpeed;
-				Debug.Log("scroll down");
 					changedAngles = true;
 				}
 			
@@ -285,22 +283,16 @@ public class CamControl : MonoBehaviour
 		 * 
 		 * Will fix at a later date
 		 */
-		Vector3[] pts = tile.GetComponent<MeshCollider>().sharedMesh.vertices;
+		Vector3[] pts = tile.GetTileCorners();
 		LineRenderer outline = transform.parent.GetComponent<LineRenderer>();
-		int npts;
-		if (pts.Length == 18)
-		{
-			npts = 5;
-		}
-		else
-		{
-			npts = 6;
-		}
-		outline.SetVertexCount(npts);
+		int npts = pts.Length;
+		
+		outline.SetVertexCount(npts+1);
 		
 		for (int p = 0; p<npts; p++)
 		{
 			outline.SetPosition(p, pts[p]);
 		}
+		outline.SetPosition(npts, pts[0]);
 	}
 }

@@ -197,23 +197,16 @@ static public class SaveLoad {
 				// get current location
 				s = planetFile.ReadLine();	
 				int tileID = int.Parse(s);
-				Debug.Log (faction.fname);
+				//Debug.Log (faction.fname);
 				// spawn controller!
 				planet.tiles[tileID].AttachChit(faction, cType, charName);
 				
-				// now get city specific info, if relevant!
-			/*	if (cType == ChitTypes.CITY)
-				{
-					City city = tiles[tileID].chitOnTile.GetComponent<City>();
-					s = planetFile.ReadLine();
-					city.currentyBuilding = ChitTypeParse(s);
-					s = planetFile.ReadLine();
-					city.turnsLeftToBuild = int.Parse(s);
-				}	*/				
+				
 			}
 			
 			planet.factions.Add(faction);
-			faction.UpdateListOfControllers();
+			//faction.UpdateListOfControllers();
+
 		}
 		
 		// now add in chits!
@@ -229,9 +222,9 @@ static public class SaveLoad {
 			Faction faction = planet.factions[fID];
 			
 			planet.tiles[tID].AttachChit(faction, ChitTypes.SWORD, "new unit");
-			schit = planetFile.ReadLine();
-			
-		}		
+			schit = planetFile.ReadLine();	
+		}	
+		
 	}
 	
 	static Terrains TerrainTypeParse(string s)

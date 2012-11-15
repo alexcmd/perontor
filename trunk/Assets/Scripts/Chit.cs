@@ -21,6 +21,8 @@ public class Chit : MonoBehaviour {
 	
 	public bool canMoveThisTurn = false;
 	bool updatingMovementArrow = false;
+	
+	public Order order;
 	/* not used yet, but no doubt we'll come up with some stats soon enough
 	* for example:
 	* int health;

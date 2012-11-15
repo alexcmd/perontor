@@ -11,7 +11,23 @@ public class Faction {
 	public Color fcol;
 	
 	public List<Controller> controllers = new List<Controller>();
+	public List<Chit>		chits 		= new List<Chit>();
 	
+	public Order[] GetOrders()
+	{
+		int nChits = chits.Count + controllers.Count;
+//		Debug.Log (nChits.ToString());
+		Order[] collectedOrders = new Order[nChits];
+		for (int c = 0; c<chits.Count; c++)
+		{
+			collectedOrders[c] = chits[c].order;
+		}
+		for (int c = 0; c<controllers.Count; c++)
+		{
+			collectedOrders[c+chits.Count] = controllers[c].GetComponent<Chit>().order;
+		}
+		return collectedOrders;
+	}
 	
 	public void UpdateListOfControllers()		
 	{
@@ -39,19 +55,27 @@ public class Faction {
 		controllers.Clear();
 		controllers = newList;
 		controllers = ShuffleControllers(controllers);		
+		Debug.Log (controllers.Count.ToString() + " controllers found");
 	}
 	
-	/*public void UpdateCities()
+	public void UpdateListOfChits()		
 	{
-		GameObject[] allCities = GameObject.FindGameObjectsWithTag("City");
-		foreach (GameObject g in allCities)
+		/*	 
+		 * get all non-commanders chits belonging to faction
+		 */
+		List<Chit> newList = new List<Chit>();			
+		GameObject[] allChits = GameObject.FindGameObjectsWithTag("Chit");
+		//Debug.Log ("updating list of chits: " + allChits.Length.ToString() + " found in total");
+		foreach (GameObject g in allChits)
 		{
 			if (g.GetComponent<Chit>().faction == this)
 			{
-				g.GetComponent<City>().UpdateBuilding();
+				newList.Add(g.GetComponent<Chit>());
 			}
-		}
-	}*/
+		}		
+		chits.Clear();
+		chits = newList;
+	}
 	
 	private List<Controller>  ShuffleControllers(List<Controller> cList)
 	{

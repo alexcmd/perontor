@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-	public class PlanetaryGeometry : MonoBehaviour
-	{
-		private float articCircle = 1.4f;
-		private float seaLevel = 1.86f;
-		private float equatorDesert = 0.4f;
-		private int[] triangles; // list of vertex IDs for triangles
-		public Vector3[] vertices;
-		
-		private List<Vector2> edges = new  List<Vector2>();
+public class PlanetaryGeometry : MonoBehaviour
+{
+	private float articCircle = 1.4f;
+	private float seaLevel = 1.86f;
+	private float equatorDesert = 0.4f;
+	private int[] triangles; // list of vertex IDs for triangles
+	public Vector3[] vertices;
+	
+	private List<Vector2> edges = new  List<Vector2>();
 		private float edgeLength;
 	
 		public int nmbrTris;
@@ -25,8 +25,6 @@ using System.Linq;
 	
 		public int numSubDivides; // controls the density of the hex grid
 	
-
-
 	
 		public void scaleOcean()
 		{
@@ -123,270 +121,268 @@ using System.Linq;
 			return t;		
 		}
 		
-		static public int[] CreateTileTriangles(Vector3[] v)
-		{
-			bool isPent = v.Length==18;
-			int[] tris;
-			
-			if (isPent)
-			{
-				tris = new int[3 * 15]; // 5 tile triangles + 2 triangles per edge face
-				// tile triangles
-				tris[3*0+0] = 12+0;
-				tris[3*0+1] = 12+1;
-				tris[3*0+2] = 12+2;
-				
-				tris[3*1+0] = 12+0;
-				tris[3*1+1] = 12+2;
-				tris[3*1+2] = 12+3;
-					
-				tris[3*2+0] = 12+0;
-				tris[3*2+1] = 12+3;
-				tris[3*2+2] = 12+4;
-				
-				tris[3*3+0] = 12+0;
-				tris[3*3+1] = 12+4;
-				tris[3*3+2] = 12+5;
-				
-				tris[3*4+0] = 12+0;
-				tris[3*4+1] = 12+5;
-				tris[3*4+2] = 12+1;
-				
-				// now do edge triangles
-				tris[3*5+0]  = 7;
-				tris[3*5+1]  = 2;
-				tris[3*5+2]  = 1;
-				tris[3*6+0]  = 7;
-				tris[3*6+1]  = 8;
-				tris[3*6+2]  = 2;
-	
-				tris[3*7+0]  = 8;
-				tris[3*7+1]  = 3;
-				tris[3*7+2]  = 2;
-				tris[3*8+0]  = 8;
-				tris[3*8+1]  = 9;
-				tris[3*8+2]  = 3;
-	
-				tris[3*9+0]  = 9;
-				tris[3*9+1]  = 4;
-				tris[3*9+2]  = 3;
-				tris[3*10+0] = 9;
-				tris[3*10+1] = 10;
-				tris[3*10+2] = 4;
-	
-				tris[3*11+0] = 10;
-				tris[3*11+1] = 5;
-				tris[3*11+2] = 4;
-				tris[3*12+0] = 10;
-				tris[3*12+1] = 11;
-				tris[3*12+2] = 5;
-				
-				tris[3*13+0] = 11;
-				tris[3*13+1] = 1;
-				tris[3*13+2] = 5;
-				tris[3*14+0] = 11;
-				tris[3*14+1] = 7;
-				tris[3*14+2] = 1;
-			}
-			else
-			{	
-				tris = new int[3 * 18]; // 6 tile triangles + 2 triangles per edge face
-				
-				tris[3*0+0] = 14+0;	
-				tris[3*0+1] = 14+1;			
-				tris[3*0+2] = 14+2;
-				
-				tris[3*1+0] = 14+0;
-				tris[3*1+1] = 14+2;
-				tris[3*1+2] = 14+3;
-								
-				tris[3*2+0] = 14+0;
-				tris[3*2+1] = 14+3;
-				tris[3*2+2] = 14+4;
-				
-				tris[3*3+0] = 14+0;
-				tris[3*3+1] = 14+4;
-				tris[3*3+2] = 14+5;
-				
-				tris[3*4+0] = 14+0;
-				tris[3*4+1] = 14+5;
-				tris[3*4+2] = 14+6;
-				
-				tris[3*5+0] = 14+0;
-				tris[3*5+1] = 14+6;
-				tris[3*5+2] = 14+1;
-				
-				// now do edge triangles
-				tris[3*6+0]  = 8;
-				tris[3*6+1]  = 2;
-				tris[3*6+2]  = 1;
-				tris[3*7+0]  = 8;
-				tris[3*7+1]  = 9;
-				tris[3*7+2]  = 2;
-	
-				tris[3*8+0]  = 9;
-				tris[3*8+1]  = 3;
-				tris[3*8+2]  = 2;
-				tris[3*9+0]  = 9;
-				tris[3*9+1]  = 10;
-				tris[3*9+2]  = 3;
-	
-				tris[3*10+0]  = 10;
-				tris[3*10+1]  = 4;
-				tris[3*10+2]  = 3;
-				tris[3*11+0] = 10;
-				tris[3*11+1] = 11;
-				tris[3*11+2] = 4;
-	
-				tris[3*12+0] = 11;
-				tris[3*12+1] = 5;
-				tris[3*12+2] = 4;
-				tris[3*13+0] = 11;
-				tris[3*13+1] = 12;
-				tris[3*13+2] = 5;
-				
-				tris[3*14+0] = 12;
-				tris[3*14+1] = 6;
-				tris[3*14+2] = 5;
-				tris[3*15+0] = 12;
-				tris[3*15+1] = 13;
-				tris[3*15+2] = 6;
-				
-				tris[3*16+0] = 13;
-				tris[3*16+1] = 1;
-				tris[3*16+2] = 6;
-				tris[3*17+0] = 13;
-				tris[3*17+1] = 8;
-				tris[3*17+2] = 1;		
-			}
-			return tris;
-		}	
-	
-		public void Sqrt3Subdivsion()
-		{
-			// create starting Icosahedron
-			vertices  = CreateIcosahedronV();		
-			triangles = CreateIcosahedronT();
-			nmbrVertices = vertices.Length;
-			nmbrTris = triangles.Length/3;
-			// SQRT(3) SUBDIVISION
-			for (int s=0; s< numSubDivides; s++) 
-			{			
-				edges = GetEdges();
-				Vector3 e =  (vertices[(int)edges[0].x] - vertices[(int)edges[0].y]);
-				edgeLength = e.magnitude;
-				trisForEdges = GetTrianglesAlongEdge();
-				nmbrHexs = vertices.Length;
-				// now add all the subdivision new vertices
-				vertices = SubdivideVertices(); 
-				triangles =  SubdivideTriangles();
-				nmbrVertices = vertices.Length;
-				nmbrTris = triangles.Length/3;
-			}
-		}
-	
-
-
-		public bool PlaceTiles(float[] alts)
-		{
-	
-			GameObject tile;
-			// get vertices in default tile so I can work out what order they're in!
-			for (int h=0; h<nmbrHexs; h++)//
-			{
-				// get neighbouring tiles
-				List<int> nbringTiles = GetNbringTiles(h);
-				float altitude = alts[h];
-				Vector3[] hexVertices = GetHexVertices(h);
-				TileType tileType = TileType.HEX;
-	
-				if (hexVertices.Length==5)
-				{
-					tileType = TileType.PENT; 				
-				}
-				hexVertices = ReorderVertices(hexVertices, vertices[h]);
-				hexVertices = ExtrudeTile(hexVertices, altitude); // [tilesVerts, edgeVerts, baseVerts]
-	
-				int[] hexTriangles = CreateTileTriangles(hexVertices);
-	
-				Vector2[] uvs = new Vector2[hexVertices.Length];
-	    		int i = 0;
-	        	while (i < uvs.Length) 
-				{
-	            	uvs[i] = new Vector2(hexVertices[i].x, hexVertices[i].z);
-	            	i++;
-	       	 	}	 
-				Mesh hexMesh = new Mesh();
-				hexMesh.vertices = hexVertices;		
-				hexMesh.triangles = hexTriangles;
-				hexMesh.RecalculateNormals();
-				hexMesh.uv = uvs;
-				tile = (GameObject)GameObject.Instantiate(Resources.Load("Tile"), Vector3.zero, Quaternion.identity);
-				tile.GetComponent<MeshFilter>().sharedMesh = hexMesh;
-				tile.GetComponent<MeshCollider>().mesh = hexMesh;
-				
-				tile.transform.parent = this.transform;
-				tile.name = "Tile_" + h.ToString();
-				Tile t = tile.AddComponent<Tile>();	
-				t.id = h;
-				t.nbrTiles = nbringTiles;
-				t.midpoint = hexVertices[0];
-				t.altitude = altitude;
-				t.SetTileType(tileType);
-				ApplyTerrainTexture(t, h, hexVertices[0], altitude);			
-			}	
-			
-			/* generate Tile class objects and Factions! 
-			 * probably doesn't really need to be done this way,
-			 * but I can reuse more code if I do!
-			 */
-	
-			return true;
-		}
-		
-		public List<int> GetNbringTiles(int h)
-	{	
-		List<int> nbringTiles = new List<int>();
-		for (int g=0; g<nmbrHexs; g++)
-		{
-			if ((vertices[h] - vertices[g]).magnitude <= edgeLength)
-			{
-				nbringTiles.Add(g);	
-				// quit early if we have everything
-				if (nbringTiles.Count==7)
-				{ 
-					break;
-				}
-			}
-		}
-		return nbringTiles;
-	}
-		
-		private void ApplyTerrainTexture(Tile tile, int h, Vector3 m, float altitude)
+	static public int[] CreateTileTriangles(Vector3[] v)
 	{
-		// apply terrain texture
-		if (altitude<seaLevel)
+		bool isPent = v.Length==18;
+		int[] tris;
+		
+		if (isPent)
 		{
-			tile.GetComponent<Tile>().terrain = Terrains.WATER;					
-		}
-		else if (Mathf.Abs(m.y) > articCircle)
-		{
-			tile.GetComponent<Tile>().terrain = Terrains.ICE;
-		}
-		else if(Mathf.Abs(m.y) < 0.4f)
-		{
-			tile.GetComponent<Tile>().terrain = Terrains.SAND;
+			tris = new int[3 * 15]; // 5 tile triangles + 2 triangles per edge face
+			// tile triangles
+			tris[3*0+0] = 12+0;
+			tris[3*0+1] = 12+1;
+			tris[3*0+2] = 12+2;
+			
+			tris[3*1+0] = 12+0;
+			tris[3*1+1] = 12+2;
+			tris[3*1+2] = 12+3;
+				
+			tris[3*2+0] = 12+0;
+			tris[3*2+1] = 12+3;
+			tris[3*2+2] = 12+4;
+			
+			tris[3*3+0] = 12+0;
+			tris[3*3+1] = 12+4;
+			tris[3*3+2] = 12+5;
+			
+			tris[3*4+0] = 12+0;
+			tris[3*4+1] = 12+5;
+			tris[3*4+2] = 12+1;
+			
+			// now do edge triangles
+			tris[3*5+0]  = 7;
+			tris[3*5+1]  = 2;
+			tris[3*5+2]  = 1;
+			tris[3*6+0]  = 7;
+			tris[3*6+1]  = 8;
+			tris[3*6+2]  = 2;
+
+			tris[3*7+0]  = 8;
+			tris[3*7+1]  = 3;
+			tris[3*7+2]  = 2;
+			tris[3*8+0]  = 8;
+			tris[3*8+1]  = 9;
+			tris[3*8+2]  = 3;
+
+			tris[3*9+0]  = 9;
+			tris[3*9+1]  = 4;
+			tris[3*9+2]  = 3;
+			tris[3*10+0] = 9;
+			tris[3*10+1] = 10;
+			tris[3*10+2] = 4;
+
+			tris[3*11+0] = 10;
+			tris[3*11+1] = 5;
+			tris[3*11+2] = 4;
+			tris[3*12+0] = 10;
+			tris[3*12+1] = 11;
+			tris[3*12+2] = 5;
+			
+			tris[3*13+0] = 11;
+			tris[3*13+1] = 1;
+			tris[3*13+2] = 5;
+			tris[3*14+0] = 11;
+			tris[3*14+1] = 7;
+			tris[3*14+2] = 1;
 		}
 		else
+		{	
+			tris = new int[3 * 18]; // 6 tile triangles + 2 triangles per edge face
+			
+			tris[3*0+0] = 14+0;	
+			tris[3*0+1] = 14+1;			
+			tris[3*0+2] = 14+2;
+			
+			tris[3*1+0] = 14+0;
+			tris[3*1+1] = 14+2;
+			tris[3*1+2] = 14+3;
+							
+			tris[3*2+0] = 14+0;
+			tris[3*2+1] = 14+3;
+			tris[3*2+2] = 14+4;
+			
+			tris[3*3+0] = 14+0;
+			tris[3*3+1] = 14+4;
+			tris[3*3+2] = 14+5;
+			
+			tris[3*4+0] = 14+0;
+			tris[3*4+1] = 14+5;
+			tris[3*4+2] = 14+6;
+			
+			tris[3*5+0] = 14+0;
+			tris[3*5+1] = 14+6;
+			tris[3*5+2] = 14+1;
+			
+			// now do edge triangles
+			tris[3*6+0]  = 8;
+			tris[3*6+1]  = 2;
+			tris[3*6+2]  = 1;
+			tris[3*7+0]  = 8;
+			tris[3*7+1]  = 9;
+			tris[3*7+2]  = 2;
+
+			tris[3*8+0]  = 9;
+			tris[3*8+1]  = 3;
+			tris[3*8+2]  = 2;
+			tris[3*9+0]  = 9;
+			tris[3*9+1]  = 10;
+			tris[3*9+2]  = 3;
+
+			tris[3*10+0]  = 10;
+			tris[3*10+1]  = 4;
+			tris[3*10+2]  = 3;
+			tris[3*11+0] = 10;
+			tris[3*11+1] = 11;
+			tris[3*11+2] = 4;
+
+			tris[3*12+0] = 11;
+			tris[3*12+1] = 5;
+			tris[3*12+2] = 4;
+			tris[3*13+0] = 11;
+			tris[3*13+1] = 12;
+			tris[3*13+2] = 5;
+			
+			tris[3*14+0] = 12;
+			tris[3*14+1] = 6;
+			tris[3*14+2] = 5;
+			tris[3*15+0] = 12;
+			tris[3*15+1] = 13;
+			tris[3*15+2] = 6;
+			
+			tris[3*16+0] = 13;
+			tris[3*16+1] = 1;
+			tris[3*16+2] = 6;
+			tris[3*17+0] = 13;
+			tris[3*17+1] = 8;
+			tris[3*17+2] = 1;		
+		}
+		return tris;
+	}	
+
+	public void Sqrt3Subdivsion()
+	{
+		// create starting Icosahedron
+		vertices  = CreateIcosahedronV();		
+		triangles = CreateIcosahedronT();
+		nmbrVertices = vertices.Length;
+		nmbrTris = triangles.Length/3;
+		// SQRT(3) SUBDIVISION
+		for (int s=0; s< numSubDivides; s++) 
+		{			
+			edges = GetEdges();
+			Vector3 e =  (vertices[(int)edges[0].x] - vertices[(int)edges[0].y]);
+			edgeLength = e.magnitude;
+			trisForEdges = GetTrianglesAlongEdge();
+			nmbrHexs = vertices.Length;
+			// now add all the subdivision new vertices
+			vertices = SubdivideVertices(); 
+			triangles =  SubdivideTriangles();
+			nmbrVertices = vertices.Length;
+			nmbrTris = triangles.Length/3;
+		}
+	}
+
+	public bool PlaceTiles(float[] alts)
+	{
+
+		GameObject tile;
+		// get vertices in default tile so I can work out what order they're in!
+		for (int h=0; h<nmbrHexs; h++)//
 		{
-			if (Random.value<0.5f)
+			// get neighbouring tiles
+			List<int> nbringTiles = GetNbringTiles(h);
+			float altitude = alts[h];
+			Vector3[] hexVertices = GetHexVertices(h);
+			TileType tileType = TileType.HEX;
+
+			if (hexVertices.Length==5)
 			{
-				// spawn a tree!
-				tile.GetComponent<Tile>().terrain = Terrains.FOREST;
+				tileType = TileType.PENT; 				
+			}
+			hexVertices = ReorderVertices(hexVertices, vertices[h]);
+			hexVertices = ExtrudeTile(hexVertices, altitude); // [tilesVerts, edgeVerts, baseVerts]
+
+			int[] hexTriangles = CreateTileTriangles(hexVertices);
+
+			Vector2[] uvs = new Vector2[hexVertices.Length];
+    		int i = 0;
+        	while (i < uvs.Length) 
+			{
+            	uvs[i] = new Vector2(hexVertices[i].x, hexVertices[i].z);
+            	i++;
+       	 	}	 
+			Mesh hexMesh = new Mesh();
+			hexMesh.vertices = hexVertices;		
+			hexMesh.triangles = hexTriangles;
+			hexMesh.RecalculateNormals();
+			hexMesh.uv = uvs;
+			tile = (GameObject)GameObject.Instantiate(Resources.Load("Tile"), Vector3.zero, Quaternion.identity);
+			tile.GetComponent<MeshFilter>().sharedMesh = hexMesh;
+			tile.GetComponent<MeshCollider>().mesh = hexMesh;
+			
+			tile.transform.parent = this.transform;
+			tile.name = "Tile_" + h.ToString();
+			Tile t = tile.AddComponent<Tile>();	
+			t.id = h;
+			t.nbrTiles = nbringTiles;
+			t.midpoint = hexVertices[0];
+			t.altitude = altitude;
+			t.SetTileType(tileType);
+			ApplyTerrainTexture(t, h, hexVertices[0], altitude);			
+		}	
+		
+		/* generate Tile class objects and Factions! 
+		 * probably doesn't really need to be done this way,
+		 * but I can reuse more code if I do!
+		 */
+
+		return true;
+	}
+	
+	public List<int> GetNbringTiles(int h)
+{	
+	List<int> nbringTiles = new List<int>();
+	for (int g=0; g<nmbrHexs; g++)
+	{
+		if ((vertices[h] - vertices[g]).magnitude <= edgeLength)
+		{
+			nbringTiles.Add(g);	
+			// quit early if we have everything
+			if (nbringTiles.Count==7)
+			{ 
+				break;
 			}
 		}
 	}
+	return nbringTiles;
+}
 	
+	private void ApplyTerrainTexture(Tile tile, int h, Vector3 m, float altitude)
+{
+	// apply terrain texture
+	if (altitude<seaLevel)
+	{
+		tile.GetComponent<Tile>().terrain = Terrains.WATER;					
+	}
+	else if (Mathf.Abs(m.y) > articCircle)
+	{
+		tile.GetComponent<Tile>().terrain = Terrains.ICE;
+	}
+	else if(Mathf.Abs(m.y) < 0.4f)
+	{
+		tile.GetComponent<Tile>().terrain = Terrains.SAND;
+	}
+	else
+	{
+		if (Random.value<0.5f)
+		{
+			// spawn a tree!
+			tile.GetComponent<Tile>().terrain = Terrains.FOREST;
+		}
+	}
+}
+
 	private Vector3[] ExtrudeTile(Vector3[] v, float a)
 	{
 		// we need two copies of the top tile verts as otherwise the normals go wonky

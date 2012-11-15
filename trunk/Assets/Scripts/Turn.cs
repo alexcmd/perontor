@@ -77,6 +77,7 @@ public class Turn : MonoBehaviour {
 		{
 			f.cycle++;			
 			f.UpdateListOfControllers();
+			f.UpdateListOfChits();
 			Debug.Log("Num chars found:" + f.controllers.Count.ToString());
 		}
 		

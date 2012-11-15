@@ -42,6 +42,26 @@ public class Tile : MonoBehaviour {
 
 	}
 	
+	public Vector3[] GetTileCorners()
+	{
+		Vector3[] pts = this.GetComponent<MeshCollider>().sharedMesh.vertices;	
+		int npts;
+		if (pts.Length == 18)
+		{
+			npts = 5;
+		}
+		else
+		{
+			npts = 6;
+		}
+		Vector3[] tileCorners = new Vector3[npts];
+		for (int n = 0; n<npts; n++)
+		{
+			tileCorners[n] = pts[n+1];	
+		}
+		return tileCorners;
+	}
+	
 	public void SetTileType(TileType tt)
 	{
 		tileType = tt;
@@ -50,7 +70,7 @@ public class Tile : MonoBehaviour {
 			// attach a shrine!
 			// first randomly decide which of the 4 shrines we want!
 			int r = Random.Range(1,4);		
-			Debug.Log ("Shrine" + r.ToString());
+//			Debug.Log ("Shrine" + r.ToString());
 			Vector3 m =   GameObject.FindGameObjectWithTag("Planet").transform.localToWorldMatrix * midpoint;
 			GameObject gameObject = (GameObject)GameObject.Instantiate(Resources.Load("Shrine" + r.ToString()), m, Quaternion.LookRotation(midpoint));	
 			gameObject.name = "Shrine";
@@ -180,9 +200,9 @@ public class Tile : MonoBehaviour {
 			//	Debug.Log("can move here!");				
 			//	MoveChit(planet.orderingChit);
 				planet.orderingChit.MovementArrowDone();
-				planet.orders.MovementOrder(planet.orderingChit.tile, this);
-				planet.orderingChit = null;
-				
+				planet.orderingChit.order = new Order();				
+				planet.orderingChit.order.MovementOrder(planet.orderingChit, id);					
+				planet.orderingChit = null;				
 			}
 			else
 			{
@@ -288,7 +308,6 @@ public class Tile : MonoBehaviour {
 				{
 					planet.tiles[t].TileInMovementRange();
 				}
-				
 			}
 			else
 			{
@@ -350,7 +369,6 @@ public class Tile : MonoBehaviour {
 		Vector3 m =  planet.transform.localToWorldMatrix * midpoint;
 		GameObject tree = (GameObject)GameObject.Instantiate(Resources.Load("Tree"), m, Quaternion.LookRotation(midpoint));	
 		tree.transform.parent = this.transform;
-		
 	}
 	
 

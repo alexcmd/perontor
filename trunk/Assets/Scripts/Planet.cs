@@ -95,14 +95,12 @@ public class Planet : MonoBehaviour {
 		isHost 			= this.GetComponentInChildren<MainMenu>().isHost;
 		playerFactionID	= this.GetComponentInChildren<MainMenu>().factionID;
 		savegameFolder  = this.GetComponentInChildren<MainMenu>().saveGamePath;		
-		
-		
 	}
 	
 		
 	public void StartGame()
 	{
-		orders 			= gameObject.AddComponent<Orders>();
+//		orders 			= gameObject.AddComponent<Orders>();
 		Debug.Log("switching on UI");
 		ui = gameObject.AddComponent<UI>();
 		GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
@@ -111,6 +109,14 @@ public class Planet : MonoBehaviour {
 		ui.gameLoadedSummaryWindow = true;
 	//	
 		camControls 	= Camera.main.transform.GetComponent<CamControl>();
+		
+		// update lists of chits and controllers
+		for (int f=0; f<factions.Count; f++)
+		{
+			factions[f].UpdateListOfChits();
+			factions[f].UpdateListOfControllers();
+		}
+		
 		
 		currentChar 			= playerFaction.controllers[playerFaction.step];
 		currentChar.remainingCR = currentChar.commandRating;
@@ -122,6 +128,8 @@ public class Planet : MonoBehaviour {
 		activeRegionHoop = (GameObject)GameObject.Find("ActiveRegionHoop");
 		activeRegionHoop.GetComponent<ActiveRegionHoop>().setPlanet(this);
 		SetActiveTiles(tileID);		
+		
+		
 	}
 	
 	void SetActiveTiles(int tileID)
