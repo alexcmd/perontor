@@ -42,12 +42,8 @@ public class UI : MonoBehaviour {
 	void OnGUI()
 	{	
 		faction = planet.playerFaction;	
-		GUILayout.BeginArea(new Rect(5, 5, 255, 500), panel);
 		
-		/*if (GUILayout.Button("Save World"))
-		{
-			planet.SaveWorld();			
-		}*/
+		GUILayout.BeginArea(new Rect(5, 5, 255, 500), panel);
 		
 		GUILayout.Label("Faction: " + faction.fname);
 		GUILayout.Label("Turn: " + planet.turnCtr.ToString());
@@ -56,15 +52,13 @@ public class UI : MonoBehaviour {
 		
 		if (GUILayout.Button("End Turn"))
 		{
-			planet.orders.CommitTurn();  
+			Order[] orders = planet.playerFaction.GetOrders();
+			System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(orders.GetType());
+			// create file
+			//file = new System.IO.TextWriter();
+			//x.Serialize(file);
 		}
-		
-	/*	if (faction.controllers[faction.step].tag == "City")
-		{
-			DisplayCityInfo();
-		}
-		else
-		{*/
+
 		GUILayout.Label("Active controller: " + faction.controllers[faction.step].name.ToString());	
 		GUILayout.Label("Commands left: " + faction.controllers[faction.step].remainingCR.ToString());
 

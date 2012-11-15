@@ -54,7 +54,8 @@
      <Compile Include="Assets\Scripts\LoadGame.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MeshExtrusion.cs" />
-     <Compile Include="Assets\Scripts\Orders.cs" />
+     <Compile Include="Assets\Scripts\OldOrders.cs" />
+     <Compile Include="Assets\Scripts\Order.cs" />
      <Compile Include="Assets\Scripts\Perlin.cs" />
      <Compile Include="Assets\Scripts\Planet.cs" />
      <Compile Include="Assets\Scripts\PlanetMouseControl.cs" />

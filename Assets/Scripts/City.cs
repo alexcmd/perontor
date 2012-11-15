@@ -12,6 +12,7 @@ public class City : MonoBehaviour {
 	
 	public int enlistCost = 100;
 	public int enlistCount = 0;
+	public ChitTypes chitToEnlisht = ChitTypes.NULL;
 	
 	void Start()
 	{
@@ -69,7 +70,9 @@ public class City : MonoBehaviour {
 		{
 			enlistCount++;
 			pop -= enlistCost	;
-			transform.parent.GetComponent<Planet>().orders.EnlistOrder(this);
+			chitToEnlisht = ChitTypes.SWORD;
+			transform.GetComponent<Chit>().order = new Order();
+			transform.GetComponent<Chit>().order.EnlistOrder(this, chitToEnlisht);
 		}
 	}
 }
