@@ -49,6 +49,19 @@ players get 1 resource point per settlement and per shrine. Units cost different
 
 _Question_: when do shrines allocate their points? Every time you loop round ALL your controllers? Or some other way? 
 
+==Stats==
+Chits have the following stats for now:
+
+  * cost - how many points they cost to recruit
+  * move - how far they can move
+  * terrain - what terrain can they move on?
+  * strength - for combat
+  * facing - edge or corner
+  * view range - how far can they see
+
+===Stats for later versions===
+health? morale? atk/def? 
+
 ==Chit Types==
 
 ===Controller Chits===
