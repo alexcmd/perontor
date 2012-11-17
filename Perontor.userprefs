@@ -1,16 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CamControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlanetaryGeometry.cs">
     <Files>
+      <File FileName="Assets\Scripts\Chit.cs" Line="21" Column="19" />
       <File FileName="Assets\Scripts\Order.cs" Line="11" Column="19" />
-      <File FileName="Assets\Scripts\Planet.cs" Line="118" Column="4" />
+      <File FileName="Assets\Scripts\Planet.cs" Line="89" Column="1" />
       <File FileName="Assets\Scripts\SaveLoad.cs" Line="208" Column="6" />
       <File FileName="Assets\Scripts\Faction.cs" Line="19" Column="3" />
-      <File FileName="Assets\Scripts\Chit.cs" Line="25" Column="9" />
       <File FileName="Assets\Scripts\UI.cs" Line="61" Column="1" />
-      <File FileName="Assets\Scripts\CamControl.cs" Line="296" Column="22" />
+      <File FileName="Assets\Scripts\CamControl.cs" Line="110" Column="2" />
       <File FileName="Assets\Scripts\Tile.cs" Line="60" Column="28" />
-      <File FileName="Assets\Scripts\PlanetaryGeometry.cs" Line="390" Column="23" />
+      <File FileName="Assets\Scripts\PlanetaryGeometry.cs" Line="21" Column="3" />
+      <File FileName="Assets\Scripts\CreateNewGame.cs" Line="33" Column="55" />
+      <File FileName="Assets\Scripts\MainMenu.cs" Line="192" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

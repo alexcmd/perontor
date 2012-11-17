@@ -7,35 +7,33 @@ using System.Linq;
 public class PlanetaryGeometry : MonoBehaviour
 {
 	private float articCircle = 1.4f;
-	private float seaLevel = 1.86f;
+	private float seaLevel = 1.9f;
 	private float equatorDesert = 0.4f;
 	private int[] triangles; // list of vertex IDs for triangles
 	public Vector3[] vertices;
 	
 	private List<Vector2> edges = new  List<Vector2>();
-		private float edgeLength;
+	private float edgeLength;
 	
-		public int nmbrTris;
-		public int nmbrVertices;
-		public int nmbrHexs;
+	public int nmbrTris;
+	public int nmbrVertices;
+	public int nmbrHexs;
 		
-		private List<List<int>> trisForEdges = new List<List<int>>();
-		
-		private float edgeAngle;
+	private List<List<int>> trisForEdges = new List<List<int>>();
 	
-		public int numSubDivides; // controls the density of the hex grid
+	private float edgeAngle;
 	
+	public int numSubDivides; // controls the density of the hex grid
 	
-		public void scaleOcean()
+	public void scaleOcean()
 		{
 			GameObject ocean = (GameObject)GameObject.Find("Ocean");
 			ocean.transform.localScale = new  Vector3(2*seaLevel, 2*seaLevel, 2*seaLevel);	
 		}
-		
-		public float[] CreateTerrain(float scale)
+	
+	public float[] CreateTerrain(float scale)
 		{
 			Perlin noise = new Perlin();
-			float gap = 0.1f;
 			
 			float[] alts = new float[vertices.Length];	
 	
@@ -51,23 +49,14 @@ public class PlanetaryGeometry : MonoBehaviour
 				// freeze polar seas!
 				if (Mathf.Abs(vertex.y)+0.5f>articCircle)
 				{
-					alts[i] = Mathf.Max(seaLevel+gap, 1+vertex.magnitude);				
+					//alts[i] = Mathf.Max(seaLevel+gap, 1+vertex.magnitude);				
 				}			
-				// adjust so we're now skimming sea level
-				else if (Mathf.Abs(1+vertex.magnitude-seaLevel)<gap)
-				{
-					alts[i] = 1+vertex.magnitude+gap;	
-				}
-				else
-				{			
-					alts[i] = 1+vertex.magnitude;	
-				}
+
 			}		
 			return alts;
-		
 		}
 	
-		static public Vector3[] CreateIcosahedronV()
+	static public Vector3[] CreateIcosahedronV()
 		{
 			// create points on Icosahedron with radius t
 			Vector3[] v = new Vector3[12];
@@ -91,7 +80,7 @@ public class PlanetaryGeometry : MonoBehaviour
 			return v;		
 		}
 		
-		static public int[] CreateIcosahedronT()
+	static public int[] CreateIcosahedronT()
 		{
 			int[] t = new int[60];
 			t[0*3+0] = 0;   t[0*3+1] = 8;  t[0*3+2] = 4;
@@ -285,26 +274,27 @@ public class PlanetaryGeometry : MonoBehaviour
 
 	public bool PlaceTiles(float[] alts)
 	{
-
+		/*
+		 * create physical tile and stuff
+		 * Note, hexVertices is called hexVertices even if it's a pentagon
+		 */
 		GameObject tile;
 		// get vertices in default tile so I can work out what order they're in!
 		for (int h=0; h<nmbrHexs; h++)//
 		{
-			// get neighbouring tiles
-			List<int> nbringTiles = GetNbringTiles(h);
-			float altitude = alts[h];
 			Vector3[] hexVertices = GetHexVertices(h);
+			
 			TileType tileType = TileType.HEX;
-
 			if (hexVertices.Length==5)
 			{
 				tileType = TileType.PENT; 				
 			}
 			hexVertices = ReorderVertices(hexVertices, vertices[h]);
-			hexVertices = ExtrudeTile(hexVertices, altitude); // [tilesVerts, edgeVerts, baseVerts]
+			hexVertices = ExtrudeTile(hexVertices, alts[h]); // [tilesVerts, edgeVerts, baseVerts]
 
 			int[] hexTriangles = CreateTileTriangles(hexVertices);
-
+			
+			// this does something to do with uvs. Don't really understand how they work!
 			Vector2[] uvs = new Vector2[hexVertices.Length];
     		int i = 0;
         	while (i < uvs.Length) 
@@ -312,6 +302,7 @@ public class PlanetaryGeometry : MonoBehaviour
             	uvs[i] = new Vector2(hexVertices[i].x, hexVertices[i].z);
             	i++;
        	 	}	 
+			// create mesh and set it to the things we have calculated
 			Mesh hexMesh = new Mesh();
 			hexMesh.vertices = hexVertices;		
 			hexMesh.triangles = hexTriangles;
@@ -325,63 +316,101 @@ public class PlanetaryGeometry : MonoBehaviour
 			tile.name = "Tile_" + h.ToString();
 			Tile t = tile.AddComponent<Tile>();	
 			t.id = h;
-			t.nbrTiles = nbringTiles;
+			
+			if (alts[h]<seaLevel)
+			{	
+				CreateSeaTile(hexVertices, tile);
+			}
+			
+			// get neighbouring tiles
+			t.nbrTiles = GetNbringTiles(h);
+			
 			t.midpoint = hexVertices[0];
-			t.altitude = altitude;
+			t.altitude = alts[h];
 			t.SetTileType(tileType);
-			ApplyTerrainTexture(t, h, hexVertices[0], altitude);			
+			ApplyTerrainTexture(t, h, hexVertices[0], alts[h]);			
 		}	
 		
-		/* generate Tile class objects and Factions! 
-		 * probably doesn't really need to be done this way,
-		 * but I can reuse more code if I do!
-		 */
-
 		return true;
 	}
 	
-	public List<int> GetNbringTiles(int h)
-{	
-	List<int> nbringTiles = new List<int>();
-	for (int g=0; g<nmbrHexs; g++)
+	void CreateSeaTile(Vector3[] v, GameObject tile)
 	{
-		if ((vertices[h] - vertices[g]).magnitude <= edgeLength)
+		GameObject seaTile = (GameObject)GameObject.Instantiate(Resources.Load("SeaTile"), Vector3.zero, Quaternion.identity);
+		seaTile.name = "water";
+		seaTile.transform.parent = tile.transform;
+		// we need two copies of the top tile verts as otherwise the normals go wonky
+		Vector3[] hexVertices = new Vector3[3*v.Length];
+
+		for (int i=0; i<v.Length; i++)
 		{
-			nbringTiles.Add(g);	
-			// quit early if we have everything
-			if (nbringTiles.Count==7)
-			{ 
-				break;
+			v[i].Normalize();
+			hexVertices[i] = seaLevel * v[i];
+			hexVertices[i + v.Length] = v[i];
+			hexVertices[i + 2*v.Length] = hexVertices[i];
+		}
+		int[] hexTriangles = CreateTileTriangles(hexVertices);	
+		// this does something to do with uvs. Don't really understand how they work!
+		Vector2[] uvs = new Vector2[hexVertices.Length];
+    	int i2 = 0;
+        while (i2 < uvs.Length) 
+			{
+            	uvs[i2] = new Vector2(hexVertices[i2].x, hexVertices[i2].z);
+            	i2++;
+       	 	}	 
+		// create mesh and set it to the things we have calculated
+		Mesh hexMesh = new Mesh();
+		hexMesh.vertices = hexVertices;		
+		hexMesh.triangles = hexTriangles;
+		hexMesh.RecalculateNormals();
+		hexMesh.uv = uvs;
+		seaTile.GetComponent<MeshFilter>().sharedMesh = hexMesh;
+		seaTile.GetComponent<MeshCollider>().mesh = hexMesh;
+	}
+	
+	public List<int> GetNbringTiles(int h)
+	{	
+		List<int> nbringTiles = new List<int>();
+		for (int g=0; g<nmbrHexs; g++)
+		{
+			if ((vertices[h] - vertices[g]).magnitude <= edgeLength)
+			{
+				nbringTiles.Add(g);	
+				// quit early if we have everything
+				if (nbringTiles.Count==7)
+				{ 
+					break;
+				}
 			}
 		}
+		return nbringTiles;
 	}
-	return nbringTiles;
-}
 	
 	private void ApplyTerrainTexture(Tile tile, int h, Vector3 m, float altitude)
-{
-	// apply terrain texture
-	if (altitude<seaLevel)
 	{
-		tile.GetComponent<Tile>().terrain = Terrains.WATER;					
-	}
-	else if (Mathf.Abs(m.y) > articCircle)
-	{
-		tile.GetComponent<Tile>().terrain = Terrains.ICE;
-	}
-	else if(Mathf.Abs(m.y) < 0.4f)
-	{
-		tile.GetComponent<Tile>().terrain = Terrains.SAND;
-	}
-	else
-	{
-		if (Random.value<0.5f)
+		// apply terrain texture
+		if (altitude<seaLevel)
 		{
-			// spawn a tree!
-			tile.GetComponent<Tile>().terrain = Terrains.FOREST;
+			tile.GetComponent<Tile>().terrain = Terrains.WATER;	
 		}
+		else if (Mathf.Abs(m.y) > articCircle)
+		{
+			tile.GetComponent<Tile>().terrain = Terrains.ICE;
+		}
+		else if(Mathf.Abs(m.y) < 0.4f)
+		{
+			tile.GetComponent<Tile>().terrain = Terrains.SAND;
+		}
+		else
+		{
+			if (Random.value<0.5f)
+			{
+				// spawn a tree!
+				tile.GetComponent<Tile>().terrain = Terrains.FOREST;
+			}
+		}
+		tile.ReapplyTerrainTexture();
 	}
-}
 
 	private Vector3[] ExtrudeTile(Vector3[] v, float a)
 	{

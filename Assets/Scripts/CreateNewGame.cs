@@ -8,6 +8,7 @@ public class CreateNewGame : MonoBehaviour {
 	// this class is used to create a brand new game!!!
 
 	int numFactions;
+	float terrainScale = 1.5f;
 		
 	public List<Faction> f = new List<Faction>(); // a list of all factions in game
 	public string[] playerNames;
@@ -29,7 +30,7 @@ public class CreateNewGame : MonoBehaviour {
 		playerNames = this.GetComponentInChildren<MainMenu>().playerNames;
 		
 		planet.geometry.numSubDivides = this.GetComponentInChildren<MainMenu>().worldSize;
-		
+		Debug.Log (planet.geometry.numSubDivides.ToString());
 		planet.geometry.Sqrt3Subdivsion();
 		
 		/* 
@@ -37,10 +38,10 @@ public class CreateNewGame : MonoBehaviour {
 		 * collect these and apply terraforming to them to get altitudes
 		 */		
 
-		float[] alts = planet.geometry.CreateTerrain(0.9f);			
+		float[] alts = planet.geometry.CreateTerrain(terrainScale);			
 
 		// sort out ocean	
-		planet.geometry.scaleOcean();
+	//	planet.geometry.scaleOcean();
 
 		bool ready = planet.geometry.PlaceTiles(alts);	
 		
