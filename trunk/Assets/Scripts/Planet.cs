@@ -5,41 +5,7 @@ using System.IO;
 
 
 
-public enum Terrains
-{
-	GRASS, 
-	ROCK, 
-	SAND, 
-	WATER, 
-	ICE, 
-	FOREST
-}
 
-public enum TileType
-{
-	PENT,
-	HEX
-}
-
-public enum ChitTypes
-{
-	NULL, 		// I'm not sure why we'd need a NULL
-	
-	CITY, 		// settlements.. stationary controller unit. Can build.
-	COMMANDER,  // mobile controller unit
-	FLAGSHIP,   // naval controller unit
-	
-	SWORD,		// basic ground unit	
-	KNIGHT,		// alt ground unit
-	SHIP,		// basic naval unit
-	
-	SCOUT,		// ground unit - doesn't need influence
-	BUILDER, 	// builds new cities - doesn't need influence
-	
-	SHRINE, 	// capture these for points and perks
-	NECTOWER 	// the evil Nec!
-	
-}
 
 public class Planet : MonoBehaviour {
 	

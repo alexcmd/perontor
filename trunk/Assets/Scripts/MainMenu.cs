@@ -190,7 +190,6 @@ public class MainMenu : MonoBehaviour {
 		
 		for (int n=0; n<numOfFactions; n++)
 		{
-			Debug.Log(playerNames[n]);
 			playerNames[n] = GUILayout.TextField(playerNames[n]);	
 		}
 		if (GUILayout.Button("Done"))

@@ -48,7 +48,7 @@ public class LoadGame : MonoBehaviour {
 		
 		// sort out ocean	
 		
-		planet.geometry.scaleOcean();
+		//planet.geometry.scaleOcean();
 			
 		planet.geometry.PlaceTiles(alts);	
 		

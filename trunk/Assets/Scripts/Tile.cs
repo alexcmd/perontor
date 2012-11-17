@@ -2,6 +2,30 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum Terrains
+{
+	GRASS, 
+	ROCK, 
+	SAND, 
+	WATER, 
+	ICE, 
+	FOREST
+}
+
+public enum TileType
+{
+	PENT,
+	HEX
+}
+
+public enum FogOfWar
+{
+	NONE,
+	PARTIAL,
+	FULL
+}
+
+
 public class Tile : MonoBehaviour {
 
 	/*
@@ -16,6 +40,7 @@ public class Tile : MonoBehaviour {
 	public int id;
 	public float altitude;
 	public TileType tileType;
+	public FogOfWar foggy = FogOfWar.NONE;
 
 	public Vector3 midpoint;
 	
@@ -135,7 +160,8 @@ public class Tile : MonoBehaviour {
 				m = this.GetComponent<MeshRenderer>().material = (Material)Resources.Load("TerrainMaterials/Tile_Sand", typeof(Material));
 				break;
 			case Terrains.WATER:
-				m = this.GetComponent<MeshRenderer>().material = (Material)Resources.Load("TerrainMaterials/Tile_Water", typeof(Material));
+				//m = this.GetComponent<MeshRenderer>().material = (Material)Resources.Load("TerrainMaterials/Tile_Water", typeof(Material));
+				m = this.GetComponent<MeshRenderer>().material = (Material)Resources.Load("TerrainMaterials/Tile_Sand", typeof(Material));
 				break;
 			default:
 				m = this.GetComponent<MeshRenderer>().material = (Material)Resources.Load("TerrainMaterials/Tile_Grass", typeof(Material));

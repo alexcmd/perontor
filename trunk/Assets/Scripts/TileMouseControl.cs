@@ -17,7 +17,15 @@ public class TileMouseControl : MonoBehaviour {
 	
 	void OnMouseOver()
 	{
-		transform.parent.GetComponent<Planet>().mouseOverTile = this.GetComponent<Tile>();
-		transform.parent.GetComponent<Planet>().GetComponentInChildren<CamControl>().OutlineTile(this.GetComponent<Tile>());
+		if (this.tag == "Water")
+		{
+			transform.parent.parent.GetComponent<Planet>().mouseOverTile = transform.parent.GetComponent<Tile>();
+			transform.parent.parent.GetComponent<Planet>().GetComponentInChildren<CamControl>().OutlineTile(transform.parent.GetComponent<Tile>());
+		}
+		else
+		{
+			transform.parent.GetComponent<Planet>().mouseOverTile = this.GetComponent<Tile>();
+			transform.parent.GetComponent<Planet>().GetComponentInChildren<CamControl>().OutlineTile(this.GetComponent<Tile>());
+		}
 	}	
 }

@@ -2,6 +2,26 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum ChitTypes
+{
+	NULL, 		// I'm not sure why we'd need a NULL
+	
+	CITY, 		// settlements.. stationary controller unit. Can build.
+	COMMANDER,  // mobile controller unit
+	FLAGSHIP,   // naval controller unit
+	
+	SWORD,		// basic ground unit	
+	KNIGHT,		// alt ground unit
+	SHIP,		// basic naval unit
+	
+	SCOUT,		// ground unit - doesn't need influence
+	BUILDER, 	// builds new cities - doesn't need influence
+	
+	SHRINE, 	// capture these for points and perks
+	NECTOWER 	// the evil Nec!
+	
+}
+
 public class Chit : MonoBehaviour {
 
 	/*
@@ -18,6 +38,7 @@ public class Chit : MonoBehaviour {
 	public List<Terrains> canEnterTerrains = new List<Terrains>();
 	public bool requires_influence;
 	public int str; 
+	public int sight;
 	
 	public bool canMoveThisTurn = false;
 	bool updatingMovementArrow = false;
